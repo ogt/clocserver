@@ -6,19 +6,21 @@ var createServer = require('http').createServer,
 
 var port = process.env.PORT || 8000;
 
-function createCmdServer(cmd) {
+function createCmdServer() {
   return createServer(function (req, res) {
     if (req.method == 'POST') {
-      var args = parse(req.url,true, true).query.args.split(' '),
-          proc = child(spawn(cmd, args));
+      var parsedUrl = parse(req.url,true, true),
+          args = parsedUrl.query.args,
+          cmd = parsedUrl.pathname.replace('/','');
+      console.log('Executing',cmd,args);
+      var proc = child(spawn(cmd, args));
       req.pipe(proc)
          .pipe(res);
-      console.log('Executing',cmd,args);
     }
     else // GET
       createReadStream('./index.html').pipe(res);
   });
 }
 
-createCmdServer('bin/cloc.pl').listen(port);
+createCmdServer().listen(port);
 console.log('Server running at http://localhost:'+port+'/');
