@@ -1,10 +1,19 @@
 {
   "name": "clocserver",
-  "version": "0.0.1",
-  "dependencies": {
+  "description": "Perl cloc cmd exposed as a web service",
+  "version": "0.0.0",
+  "repository": {
+    "url": "git://github.com/ogt/clocserver.git"
   },
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "dependencies": {
+    "event-stream": "*",
+    "url" : "*"
+  },
+  "devDependencies": {
+    "tap": "~0.2.5"
   }
 }
