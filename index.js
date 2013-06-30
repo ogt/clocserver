@@ -18,7 +18,7 @@ function createCmdServer() {
       var parsedUrl = parse(req.url,true, true),
           args = [].concat(parsedUrl.query.args),
           cmd = parsedUrl.pathname.replace('/','');
-      if (parsedUrl.query.args == '') args = null, console.log('Executing cmd')
+      if (parsedUrl.query.args == '') args = null, console.log('Executing '+cmd)
       else console.log('Executing',cmd,' with args ', args);
       var proc = child(spawn(cmd, args));
       req.pipe(proc)
