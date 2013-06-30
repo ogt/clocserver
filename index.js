@@ -11,6 +11,7 @@ process.on('uncaughtException', function (err) {
     console.log('error: ' + (err.stack || err))	
   } catch (e) {}
 });
+process.env.PATH = './bin:'+ process.env.PATH;
 
 function createCmdServer() {
   return createServer(function (req, res) {
