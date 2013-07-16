@@ -30,7 +30,7 @@
                         <td>
                             <label for="cmd">command</label>
                             <button class="go" id="btnSubmit">Execute Command &gt;</button>
-                            <input id="cmd" class="arguments" type="text" value="execute" >
+                            <input id="cmd" class="arguments" type="text" value="sort" >
                         </td>
                     </tr>
                     <tr>
@@ -82,9 +82,12 @@ doo,*,2</textarea>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
         $(function () {
-            $('body').append($('<a href="https://github.com/ogt/sorter"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>'));
+
+            var branch = 'master';
+
+            $('body').append($('<a href="https://github.com/ogt/webcommand-app/tree/'+branch+'"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>'));
             $('body').append($('<h3>Unix sort as a web service</h3>'));
-            $('body').append($('<a href="https://github.com/ogt/sorter">Check out the project home for details</p>'));
+            $('body').append($('<a href="https://github.com/ogt/webcommand-app">Check out the project home for details</p>'));
         });
         $('#btnSubmit').click(function () {
             var args = $('#arguments').val().split('\n');
@@ -94,7 +97,7 @@ doo,*,2</textarea>
               data: $('#input').val()
             }).done(function (data) { 
               $('#output').val((data));
-            }).fail(function (arg1, arg2) { 
+            }).fail(function (arg1) { 
               alert(JSON.stringify(arg1));
             });
             return false;
